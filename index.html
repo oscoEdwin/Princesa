@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Para Mi Princesa....</title>
+</head>
+
+<body>
+
+    <h1 class="titulo_amor">Para Mi Princesita Hermosa</h1>
+    <img id="imagen" src="trebol2.png" alt="Gatito tierno">
+    <br>
+    <button id="boton">Siguiente</button>
+
+    <div id="carta" style="display:none;">
+        <h2>Espero te guste el detalle <br>
+            ya que eres una persona muy especial... <br>
+            y solo quiero verte feliz. <br><br>
+            Eres mi sol en los días nublados <br>
+            y la razón de mi sonrisa diaria. <br>
+            Te quiero mucho mi amor. <br>
+            Escucha esta canción que es para ti.
+        </h2>
+
+        <div class="flores">
+            <div class="flor-con-mensaje">
+                <img src="chocolates.png" alt="Flor amarilla" class="flor">
+                <span class="mensaje">Tu sonrisa es dulce como este chocolate y me enamora cada vez que
+                    sonries...</span>
+            </div>
+            <div class="flor-con-mensaje">
+                <img src="flores amarillas.png" alt="Flor amarilla" class="flor">
+                <span class="mensaje">Gracias por florecer en mi mundo como la primavera más bonita que he
+                    conocido.</span>
+            </div>
+            <div class="flor-con-mensaje">
+                <img src="princesa.png" alt="Flor amarilla" class="flor">
+                <span class="mensaje">Gracias por Aparecer en mi Vida, Eres mi Persona Favorita Y ya te Extraño Mucho
+                    Mucho....</span>
+            </div>
+        </div>
+
+        <!-- 👇 Área de texto y botón ahora van debajo de las 3 imágenes -->
+        <div class="mensaje-final">
+            <textarea class="areadetexto" id="mensaje" rows="5" cols="40"
+                placeholder="Si quieres aquí puedes escribir algo al Autor... Osea yo tu Amorcito jejeje"></textarea><br>
+            <button class="btn_what" onclick="enviarWhatsApp()">Enviar</button>
+        </div>
+    </div>
+
+
+    <!-- 🎵 Reproductor de música oculto -->
+    <audio id="musica" src="Rafa Espino - No hay canción que te defina (Lyric Vídeo) - Rafa Espino.mp3"
+        preload="auto"></audio>
+
+    <script>
+        const imagenes = [
+            "trebol2.png",
+            "preocupado.png",
+            "heyyy.png",
+            "no te vallas.png",
+            "mira esto.png",
+            "espero_te.png"
+        ];
+
+        let index = 0;
+        const img = document.getElementById("imagen");
+        const btn = document.getElementById("boton");
+        const carta = document.getElementById("carta");
+        const audio = document.getElementById("musica");
+
+        btn.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play(); // 🎵 Solo se reproduce si no está sonando
+            }
+
+            index++;
+            if (index < imagenes.length - 1) {
+                img.src = imagenes[index];
+            } else if (index === imagenes.length - 1) {
+                img.src = imagenes[index];
+                btn.textContent = "Abrir carta";
+            } else {
+                carta.style.display = "block";
+                btn.style.display = "none";
+                img.style.display = "none";
+            }
+        });
+        function enviarWhatsApp() {
+            var numero = "59169726081";
+            var texto = document.getElementById("mensaje").value;
+            var url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(texto);
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+
+</html>
